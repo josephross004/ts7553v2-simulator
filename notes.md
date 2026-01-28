@@ -79,4 +79,24 @@ Check the ELF header of resulting `a.out`:
 file a.out
 ```
 
-> `a.out: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=d4a4f5ccfe813185b47b827fc2889ede0d9ba1d3, for GNU/Linux 3.2.0, not stripped`
+> `a.out: ELF 32-bit LSB pie executable, `
+
+Executable, linkable format, 32-bitness, Least-Significant byte (little endian), position independent executable. 
+
+In essence, it's runnable by the TS-7553 board, it's a 32-bit compilation, it's LSB like most processors, and it's secure (ASLR). 
+
+>` ARM, EABI5 version 1 (SYSV), dynamically linked, `
+
+Runs on the ARM chip on the board, uses EABI5 for system calls and data access control. Dynamically linked so that this program doesn't include its .so files and the loader needs to load those functions into memory.
+
+> `interpreter /lib/ld-linux-armhf.so.3, `
+
+Location of the loader. `armhf` is crucial though, since it is an idiosyncracy of the TS-7553 board and has a dedicated hardware unit for decimal math. 
+
+> `BuildID[sha1]=d4a4f5ccfe813185b47b827fc2889ede0d9ba1d3, `
+
+Specific fingerprint of this specific build. 
+
+> `for GNU/Linux 3.2.0, not stripped`
+
+Still contains the original `symtab` and requires minimum GNU 3.2.0 kernel to run this program.
