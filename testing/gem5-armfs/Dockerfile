@@ -14,7 +14,7 @@ WORKDIR /opt
 RUN git clone https://github.com/gem5/gem5.git && \
     cd gem5 && \
     git checkout stable && \
-    scons -j$(nproc) build/ARM/gem5.opt  # ARM ISA binary
+    scons -j2 build/ARM/gem5.opt  # ARM ISA binary
 # Docs: building & deps on Ubuntu 22.04. [4](https://www.gem5.org/documentation/general_docs/building)
 
 # Add a non-root user for convenience
